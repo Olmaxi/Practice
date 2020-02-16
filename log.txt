@@ -1,0 +1,11 @@
+commit ff589ac52dba6909cc52ac5c56f2e59e1b5b8cd3 (HEAD -> master)
+Author: Olmaxi <olifiruk_maxim@mail.ru>
+Date:   Sun Feb 16 22:19:50 2020 +0300
+
+    add status.txt
+
+commit abe89bbd27e02648e21b7e971006ee9d7a6c5258
+Author: Olmaxi <olifiruk_maxim@mail.ru>
+Date:   Sun Feb 16 22:15:29 2020 +0300
+
+    add .gitignore
