@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "eea39aea-9e04-4841-b875-b82650acb8c9",
+		"name": "task4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://http.cat/200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://http.cat/200",
+					"protocol": "https",
+					"host": [
+						"http",
+						"cat"
+					],
+					"path": [
+						"200"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://http.cat/404",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://http.cat/404",
+					"protocol": "https",
+					"host": [
+						"http",
+						"cat"
+					],
+					"path": [
+						"404"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://http.cat/502",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://http.cat/502",
+					"protocol": "https",
+					"host": [
+						"http",
+						"cat"
+					],
+					"path": [
+						"502"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://chroniclingamerica.loc.gov/search/titles/results/?terms=california&format=json&page=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://chroniclingamerica.loc.gov/search/titles/results/?terms=california&format=json&page=1",
+					"protocol": "https",
+					"host": [
+						"chroniclingamerica",
+						"loc",
+						"gov"
+					],
+					"path": [
+						"search",
+						"titles",
+						"results",
+						""
+					],
+					"query": [
+						{
+							"key": "terms",
+							"value": "california"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://chroniclingamerica.loc.gov/search/titles/results/?terms=oregon&format=json&page=2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://chroniclingamerica.loc.gov/search/titles/results/?terms=oregon&format=json&page=2",
+					"protocol": "https",
+					"host": [
+						"chroniclingamerica",
+						"loc",
+						"gov"
+					],
+					"path": [
+						"search",
+						"titles",
+						"results",
+						""
+					],
+					"query": [
+						{
+							"key": "terms",
+							"value": "oregon"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://chroniclingamerica.loc.gov/search/titles/results/?terms=texas&format=json&page=3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://chroniclingamerica.loc.gov/search/titles/results/?terms=texas&format=json&page=3",
+					"protocol": "https",
+					"host": [
+						"chroniclingamerica",
+						"loc",
+						"gov"
+					],
+					"path": [
+						"search",
+						"titles",
+						"results",
+						""
+					],
+					"query": [
+						{
+							"key": "terms",
+							"value": "texas"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "page",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.nasa.gov/planetary/apod?date=2020-03-07&api_key=DEMO_KEY",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?date=2020-03-07&api_key=DEMO_KEY",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-03-07"
+						},
+						{
+							"key": "api_key",
+							"value": "DEMO_KEY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.nasa.gov/planetary/apod?date=2018-02-05&api_key=DEMO_KEY",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?date=2018-02-05&api_key=DEMO_KEY",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2018-02-05"
+						},
+						{
+							"key": "api_key",
+							"value": "DEMO_KEY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.nasa.gov/planetary/apod?&api_key=DEMO_KEY",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "DEMO_KEY"
+						},
+						{
+							"key": null,
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
