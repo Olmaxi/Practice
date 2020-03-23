@@ -1,0 +1,185 @@
+.home{
+  height: 5vh; 
+  width: 5vh; 
+  position: absolute;
+}
+
+.nav-box{
+  height: 5vh; 
+  width: 20vh;  
+  float: right; 
+  height: 5vh; 
+  margin-right: 2vh;
+}
+
+.user-name{
+  height: 5vh; 
+  width: 5vh;  
+  float: left;  
+  font-size:2vh ; 
+  margin-top: 1.4vh; 
+  margin-left: 5vh;
+}
+
+.avatar{
+  border: 0.1vh solid black; 
+  border-radius: 50%;
+  Width:4vh; 
+  margin-top: 0.4vh; float: right; height: 4vh; 
+}
+
+.post{
+  border: 0.1vh solid black; 
+  background-color: white; 
+  margin-bottom: 5vh;  
+}
+
+.header{
+  overflow:hidden;
+  border: 0.1vh solid black; 
+  height: 5vh; 
+  background-color: white;
+}
+
+.main{
+  border: 0.1vh solid black; 
+  height: 90vh;
+  background-color: #F0AD41;
+  overflow-y: scroll;
+  border-top: none;
+}
+
+.content{ 
+  border: 0.1vh solid black; 
+  width: 65%;
+  background-color: #DADADA; 
+  margin: 0 auto;
+  border-top: none;
+}
+
+.filters{
+  float: left; 
+  height: 5vh;
+}
+
+.bar-button{
+  font-size:2vh ; 
+  float: right; 
+  height: 5vh; 
+  width: 14vh; 
+  border: 0.2vh solid black; 
+  border-top: none; 
+  border-right: none;
+}
+
+.filter-button{
+  height: 5vh; 
+  width: 5vh;  
+  border: 0.2vh solid black;  
+}
+
+.post-content{
+  margin-top: 2vh; 
+  width: 100%;
+}
+
+div.inline{
+  width: 10%;
+  float:left; 
+  margin-left: 2vh;
+}
+
+.footer-text{
+  color: #FFF;  
+  font-size: 32px; 
+  font-family: Verdana;
+}
+
+.margin-left{
+  margin-left: 20px;
+}
+
+.margin-right{
+  margin-right: 20px;
+}
+
+.align-center{
+  text-align: center;
+}
+
+div.inline-left {
+  width: 80%;
+  float:left; 
+  margin-left: 3vh;
+}
+
+div.inline-right{
+  float:right; 
+  margin-left: 3vh;
+}
+
+.post-button{
+  height: 3vh; width: 3vh;
+}
+
+.text{
+  font-size:1vw;
+}
+
+.clearBoth{
+  clear:both; 
+}
+
+.round{
+  border: 0.1vh solid black; 
+  border-radius: 50%;
+  Width:5vh; height: 5vh;
+  margin-left: 1vh;
+}
+
+.bar_date{
+  float:left; 
+  margin-left: 1vh ;    
+  font-size:1vw;
+}
+
+.footer{
+  border: 2px solid black; 
+  height: 200px; 
+  background-color: #94341F;
+}
+
+.add-posts{
+  text-align:center; 
+  font-size: 24px;
+}
+
+.footer-text-left{
+  color: #FFF;  
+  font-size: 32px; 
+  font-family: Verdana ; 
+  float: left; 
+  margin-left: 20px;
+}
+
+.footer-text-right{
+  color: #FFF;  
+  font-size: 32px; 
+  font-family: Verdana ; 
+  float: right;
+  margin-right: 20px;
+}
+
+.footer-text-center{
+  color: #FFF;  
+  font-size: 32px; 
+  font-family: Verdana; 
+  text-align: center;
+}
+
+.theme {
+  float:left; 
+  margin-left: 7vh ;
+  font-size:1vw;
+  font-weight: bold;
+}
