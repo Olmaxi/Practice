@@ -1,45 +1,55 @@
 var posts = [
     {
         id: '1',
-        description: 'съешь ещё этих мягких французских булок, да выпей чаю',
+        description: '1',
         createdAt: new Date('2020-03-23T10:00:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
-
+        photoLink: './graphic/MrNoOne.png',
+        likes : 0,
+        hashtages : ['#a', '#b'],
+        title: 'some title',
     },
 
     {
         id: '2',
-        description: 'съешь ещё этих мягких французских булок, да выпей чаю',
+        description: '2',
         createdAt: new Date('2020-03-23T11:00:00'),
-        author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
+        author: 'Mr',
+        photoLink: './graphic/MrNoOne.png',
+        likes : 0,
+        hashtages : ['#a', '#b'],
+        title: 'some title',
     },
 
     {
         id: '3',
-        description: 'съешь ещё этих мягких французских булок, да выпей чаю',
+        description: '3',
         createdAt: new Date('2020-03-23T11:20:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
-
+        photoLink: './graphic/MrNoOne.png',        
+        likes : 0,
+        hashtages : ['#a'],
+        title: 'some title',
     },
 
     {
         id: '4',
-        description: 'съешь ещё этих мягких французских булок, да выпей чаю',
+        description: '4',
         createdAt: new Date('2020-03-23T15:50:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
+        photoLink: './graphic/MrNoOne.png',
+        hashtages : [],
+        title: 'some title',
     },
 
     {
         id: '5',
-        description: 'съешь ещё этих мягких французских булок, да выпей чаю',
+        description: '5',
         createdAt: new Date('2020-03-23T13:34:00'),
-        author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
-
+        author: 'M.NoOne',
+        photoLink: './graphic/MrNoOne.png',
+        hashtages : [],
+        title: 'some title',
     },
 ];
 
@@ -50,7 +60,7 @@ var postsForAdding = [
         description: 'съешь ещё этих мягких французских булок, да выпей чаю',
         createdAt: new Date('2020-03-23T16:35:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
+        photoLink: './graphic/MrNoOne.png',
     },
 
     {
@@ -58,7 +68,7 @@ var postsForAdding = [
         description: 'съешь ещё этих мягких французских булок, да выпей чаю',
         createdAt: new Date('2020-03-23T17:20:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
+        photoLink: './graphic/MrNoOne.png',
 
     },
 
@@ -67,7 +77,7 @@ var postsForAdding = [
         description: 'съешь ещё этих мягких французских булок, да выпей чаю',
         createdAt: new Date('2020-03-23T14:10:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
+        photoLink: './graphic/MrNoOne.png',
 
     },
 
@@ -76,7 +86,7 @@ var postsForAdding = [
         description: 'съешь ещё этих мягких французских булок, да выпей чаю',
         createdAt: new Date('2020-03-23T13:10:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
+        photoLink: './graphic/MrNoOne.png',
 
     },
 
@@ -85,7 +95,7 @@ var postsForAdding = [
         description: 'I am not validated',
         createdAt: '',
         author: '',
-        photoLink: ''
+        photoLink: '',
     },
 
     {
@@ -93,14 +103,14 @@ var postsForAdding = [
         description: 'I am not validated',
         createdAt: new Date('2020-03-23T13:10:00'),
         author: '',
-        photoLink: ''
+        photoLink: '',
     },  
     {
         id: '12',
         description: 'I am not validated',
         createdAt: '',
         author: '',
-        photoLink: './graphic/MrNoOne.png'
+        photoLink: './graphic/MrNoOne.png',
     },  
 ];
 
@@ -110,7 +120,7 @@ var sameID_Posts = [
         description: 'Same',
         createdAt: new Date('2020-03-23T10:00:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
+        photoLink: './graphic/MrNoOne.png',
 
     },
 
@@ -119,18 +129,19 @@ var sameID_Posts = [
         description: 'ID',
         createdAt: new Date('2020-03-23T11:00:00'),
         author: 'Mr.NoOne',
-        photoLink: './graphic/MrNoOne.png'
+        photoLink: './graphic/MrNoOne.png',
     },  
 ];
 
 
 let validatedPostForAdding = {
     id: '20',
-    description: 'съешь ещё этих мягких французских булок, да выпей чаю',
+    description: 'qwe',
     createdAt: new Date('2020-03-23T13:10:00'),
-    author: 'Mr.NoOne',
-    photoLink: './graphic/MrNoOne.png'
-
+    author: 'Maxim',
+    photoLink: './graphic/MrNoOne.png',
+    hashtages : ["#d"],
+    title: 'some title',
 }
 
 let notValidatedPostForAdding = {
@@ -138,7 +149,8 @@ let notValidatedPostForAdding = {
     description: 'съешь ещё этих мягких французских булок, да выпей чаю',
     createdAt: '',
     author: 'Mr.NoOne',
-    photoLink: ''
-
+    photoLink: '',
+    hashtages : [],
+    title: 'some title',
 }
 

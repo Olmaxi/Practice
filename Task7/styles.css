@@ -1,9 +1,26 @@
 * {box-sizing: border-box;}
 
+.container {
+
+  margin: 0 auto;
+}
+
+.filter-dropdown
+{
+  display: inline-block;
+  width: 50%;
+}
+
+#notes {
+  max-height: 510px;
+  overflow: auto;
+}
+
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  overflow:hidden; 
+  overflow : hidden; 
+  
 }
 
 .header {
@@ -47,6 +64,7 @@ justify-content: center;
   }
 
   .header .post-button { 
+    visibility: hidden;
     display: inline-block;
     text-indent: -9999px;
     width: 30px;
@@ -76,25 +94,25 @@ justify-content: center;
   .footer-left-content {
 
     float:left;
-    width:33%; /* The width is 20%, by default */
+    width:33%; 
   }
 
   .footer-right-content {
 
     float:right;
-    width:33%; /* The width is 20%, by default */
+    width:33%;
   }
 
   .footer-main-content {
     text-align: center;
     float:left;
-    width:33%; /* The width is 60%, by default */
+    width:33%; 
   }
 
 .main-content {
-  
+    margin-top: 10px;
     float:left;
-    width:80%; /* The width is 60%, by default */
+    width:80%; 
   }
   
   .center {
@@ -104,9 +122,19 @@ justify-content: center;
     width: 50%;
   }
 
-  .footer{
-    border: 2px solid black; height: 100px; background-color: #94341F; color: #FFF;
-  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #94341F;
+    color: white;
+    text-align: center;
+    height: 100px;
+ }
+
+  
   
   .filter{
     background: url(./graphic/filter.svg);
@@ -171,15 +199,14 @@ button span{
 }
 
 .main{   
-      background-color: #F0AD41;
-      overflow-y: scroll;
-      height: 95vh; 
+      background-color: #F0AD41;     
+      height: 120vh; 
   }
   
 
   .content{ 
     border: 0.1vh solid black; 
-    width: 65%;
+    width: 70%;
     background-color: #DADADA;
     margin: 0 auto;
     border-top: none; 
@@ -203,7 +230,7 @@ button span{
 
   @media screen and (max-width:800px) {
     .left-content, .main-content {
-      width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+      width:100%; 
     }
   }
   
@@ -226,3 +253,39 @@ button span{
     text-align:center; font-size: 18px;
   }
 }
+
+#login-button{
+  display: inline;
+}
+
+#logout-button{
+  display: none;
+}
+
+#user-button{
+  display: none;
+}
+
+#button-filter, #button-hashtag, #button-add{
+visibility: hidden;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdown-content > div
+{
+    display: inline-block; 
+}
+
+.show {display: block;}
+#myInput:focus {outline: 3px solid #ddd;}
+
