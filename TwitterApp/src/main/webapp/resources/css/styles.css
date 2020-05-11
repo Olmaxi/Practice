@@ -1,15 +1,33 @@
 * {box-sizing: border-box;}
 
+.container {
+
+  margin: 0 auto;
+}
+
+.filter-dropdown
+{
+  display: inline-block;
+  width: 50%;
+}
+
+#notes {
+  max-height: 510px;
+  overflow: auto;
+}
+
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  overflow : hidden; 
+  
 }
 
 .header {
   overflow: hidden;
   background-color: #f1f1f1;
   padding: 10px 5px;  
-  
+  border-bottom: 0.1vh solid; 
 }
 
 .header .date{
@@ -45,7 +63,16 @@ justify-content: center;
     background-size: 30px 30px;
   }
 
-  .header .post-button { 
+  .bottom-button {     
+    display: inline-block;
+    text-indent: -9999px;
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+   
+  }
+
+  .header .post-button {     
     display: inline-block;
     text-indent: -9999px;
     width: 30px;
@@ -53,6 +80,14 @@ justify-content: center;
     background-size: 30px 30px;
   }
 
+  .post-footer .post-button {     
+    display: inline-block;
+    text-indent: -9999px;
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    border: none;    
+  }
  
 
   .header .content-button { 
@@ -60,9 +95,16 @@ justify-content: center;
     text-indent: -9999px;
     width: 40px;
     height: 40px;
-    background-size: 40px 40px;
-    
+    background-size: 40px 40px;    
   }
+
+.post-footer {
+  bottom: 10px; 
+  position: absolute; 
+   right: 10px;
+}
+
+
 .content-button-add{
  font-size: 20px;
 }
@@ -72,10 +114,34 @@ justify-content: center;
     width:20%; /* The width is 20%, by default */
   }
 
-.main-content {
-  
+  .footer-left-content {
+
     float:left;
-    width:80%; /* The width is 60%, by default */
+    width:33%; 
+  }
+
+  .footer-right-content {
+
+    float:right;
+    width:33%;
+  }
+
+  .footer-main-content {
+    text-align: center;
+    float:left;
+    width:33%; 
+  }
+
+.main-content {
+    margin-top: 10px;
+    float:left;
+    width:80%; 
+  }
+
+  .bottom-content {
+    margin-bottom: 10px;
+    float: bottom;
+    width:80%; 
   }
   
   .center {
@@ -84,9 +150,21 @@ justify-content: center;
     margin-right: auto;
     width: 50%;
   }
+
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #94341F;
+    color: white;
+    text-align: center;
+    height: 100px;
+ }
+
   
-
-
+  
   .filter{
     background: url(../graphic/filter.svg);
   }
@@ -96,7 +174,11 @@ justify-content: center;
   }
 
   .like{
-    background: url(../graphic/heart.svg);
+    background: url(../graphic/heart-solid.svg);
+  }
+
+  .dislike{
+    background: url(../graphic/heart-broken-solid.svg);
   }
 
   .edit{
@@ -150,15 +232,14 @@ button span{
 }
 
 .main{   
-      background-color: #F0AD41;
-      overflow-y: scroll;
-      height: 90vh; 
+      background-color: #F0AD41;     
+      height: 120vh; 
   }
   
 
   .content{ 
     border: 0.1vh solid black; 
-    width: 65%;
+    width: 70%;
     background-color: #DADADA;
     margin: 0 auto;
     border-top: none; 
@@ -182,7 +263,7 @@ button span{
 
   @media screen and (max-width:800px) {
     .left-content, .main-content {
-      width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+      width:100%; 
     }
   }
   
@@ -200,4 +281,44 @@ button span{
   .header-right {
     float: none;
   }
+
+  .add-posts {
+    text-align:center; font-size: 18px;
+  }
 }
+
+#login-button{
+  display: inline;
+}
+
+#logout-button{
+  display: none;
+}
+
+#user-button{
+  display: none;
+}
+
+#button-filter, #button-hashtag, #button-add{
+visibility: hidden;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdown-content > div
+{
+    display: inline-block; 
+}
+
+.show {display: block;}
+#myInput:focus {outline: 3px solid #ddd;}
+
