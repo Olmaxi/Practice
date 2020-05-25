@@ -51,8 +51,8 @@
         </div>
       </div>
 
-      <div class="container">
-        <div id="notes">
+      <div id="container">
+     
           <template id="note-template">
             <article class="post">
 
@@ -66,12 +66,13 @@
                   <h2 style="display: inline; margin-left: 20px;" data-target="title"></h2>
                 </div>
                 <div class="header-right">
-                  <button class="post-button edit" onclick="editPost()"></button>
-                  <button class="post-button delete" onclick="deletePost()"></button>
+                  <button class="post-button edit"></button>
+          <!--       <button class="post-button delete" onclick="deletePost(this.closest('article').id)"></button>--> 
+          <button class="post-button delete"></button>
                 </div>
               </div>
 
-              <div style="position: relative;">
+              <div class="post-main">
                 <div class="left-content">
                   <img data-target="photoLink" alt="no avatar :(" class="avatar-post center">
                   <p style="text-align: center;" data-target="author"></p>
@@ -81,40 +82,50 @@
                   
                 </div>
 
+             
+              
+
                 <div class="post-footer">
-                  <button class="post-button like"></button>
+                  <!-- <button class="post-button like" onclick="likePost(this.closest('article').id)"></button> -->
+                  <button class="post-button like"></button> 
                   <span data-target="likes"></span>
+                  <!-- <button class="post-button dislike" onclick="dislikePost(this.closest('article').id)"></button> -->
                   <button class="post-button dislike"></button>
                 </div>
                
               </div>
          
+         
 
 
 
             </article>
+           
           </template>
-        </div>
-      </div>
 
+
+      </div>
+  
+ 
+<!--
       <footer class="footer">
         <div style="margin-top: 2vh;">
 
 
           <div class="footer-left-content">
-            <span style="float: left; margin-left: 50px;">Contacts</span>
+            <span style="float: left; margin-left: 50px;" class="about">Contacts</span>
           </div>
           <div class="footer-main-content">
-            <span>2020</span>
+            <span id="pageYear" class="aboutCenter">2020</span>
             <br>
-            <span>by Maxim Olifiruk</span>
+            <span class="aboutCenter">by Maxim Olifiruk</span>
           </div>
           <div class="footer-right-content">
-            <span style="float: right; margin-right: 50px;">About website</span>
+            <span style="float: right; margin-right: 50px;" class="about">About website</span>
           </div>
         </div>
       </footer>
-
+    -->
   </main>
 
 

@@ -1,8 +1,9 @@
 * {box-sizing: border-box;}
 
-.container {
-
+#container {
+  overflow: auto;
   margin: 0 auto;
+  max-height: 400px;
 }
 
 .filter-dropdown
@@ -12,9 +13,14 @@
 }
 
 #notes {
-  max-height: 510px;
-  overflow: auto;
+
+
 }
+
+.post-main {
+  position: relative;
+}
+
 
 body { 
   margin: 0;
@@ -54,6 +60,8 @@ justify-content: center;
   font-size: 25px;
   font-weight: bold;
 }
+
+
 
 .header a.home { 
     text-indent: -9999px;
@@ -136,6 +144,7 @@ justify-content: center;
     margin-top: 10px;
     float:left;
     width:80%; 
+    overflow-wrap: break-word;
   }
 
   .bottom-content {
@@ -264,6 +273,7 @@ button span{
   @media screen and (max-width:800px) {
     .left-content, .main-content {
       width:100%; 
+    
     }
   }
   

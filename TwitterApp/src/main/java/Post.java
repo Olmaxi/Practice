@@ -7,6 +7,8 @@ public class Post {
     String author;
     String photoLink;
 
+    public Post() {};
+
     public Post(int id, String description, Date createdAt, String author, String photoLink)
     {
         this.id = id;

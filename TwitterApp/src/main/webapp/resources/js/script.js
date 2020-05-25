@@ -56,16 +56,17 @@ class PostsList {
 
 
     static validatePost(post) {
-
+        console.log(post)
         if (
-            post.id &&
+           // post.id &&
             post.description &&
             post.title &&
             post.author &&
             post.createdAt &&
             post.photoLink) {
 
-            if (Number.isInteger(parseInt(post.id)) &&
+            if (
+                //Number.isInteger(parseInt(post.id)) &&
                 post.description.length < 200 &&
                 post.title.length < 15 &&
                 post.author.length < 15 &&
@@ -75,7 +76,13 @@ class PostsList {
             }
             return false;
         }
-        else return false;
+        
+        else 
+        {
+            console.log(post)
+            return false;
+        }
+       
     }
 
     addAll(posts) {
@@ -208,19 +215,37 @@ class PostsList {
 
 
     add(post) {
+
+  
+
         if (!PostsList.validatePost(post)) {
             return false;
         }
         
-        for (let i = 0; i < this._posts.length; i++) {
+       /* for (let i = 0; i < this._posts.length; i++) {
             if (this._posts.find(item => item.id === post.id)) {
                 return false;
             }
+        }*/
+       
+       
+        let idmax=0;
+        for(let i=0;i<this._posts.length;i++){
+            console.log(posts[i].id);
+            if(posts[i].id>idmax)
+            {
+                idmax=posts[i].id;          
+            }
         }
+
+       post.id =  ++idmax      
+      
 
         post.hashtages?.forEach(hashtag => {
             this.hashtagSet.add(hashtag);
         });
+
+        post.likes = 0;
 
         this._posts.push(post);
         this._posts.sort((a, b) => a.createdAt - b.createdAt);
@@ -231,6 +256,7 @@ class PostsList {
 
 
     edit(id, post) {
+        console.log()
         let postForEdit = this.get(id);
 
         for (let key in post) {

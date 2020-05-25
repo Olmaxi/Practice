@@ -8,6 +8,26 @@
     <listener-class>ListenToMeFirst</listener-class>
   </listener>
 
+    <servlet>
+        <servlet-name>PostRequests</servlet-name>
+        <servlet-class>PostRequests</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PostRequests</servlet-name>
+        <url-pattern>/posts</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetPosts</servlet-name>
+        <servlet-class>GetPosts</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetPosts</servlet-name>
+        <url-pattern>/getposts</url-pattern>
+    </servlet-mapping>
+
 
   <servlet>
     <servlet-name>Tweets</servlet-name>
