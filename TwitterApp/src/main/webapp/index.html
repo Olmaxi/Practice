@@ -5,7 +5,6 @@
   <title>In developing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./resources/css/styles.css" rel="stylesheet" type="text/css">
-
   <script src="./resources/js/posts.js"></script>
   <script src="./resources/js/script.js"></script>
 
@@ -16,9 +15,6 @@
     <div class="header">
       <a href="#" class="home"></a>
       <div class="header-right">
-        <button id="login-button" onclick="login()">
-          Login
-        </button>
         <button id="logout-button" onclick="logout()">
           Logout
         </button>
@@ -36,15 +32,13 @@
         <div class="header-left">
           <button onclick="showFilterBox()" class="content-button filter" id="button-filter"></i></button>
           <div id="myDropdown" class="dropdown-content">
-            <div style="vertical-align: top">
-              <button onclick="showFilterOptions()">Author filter</button>
+            <div id="filter-option">
+              <button id="filter-option-button" onclick="showFilterOptions()">Author filter</button>
               <button>Date filter</button>
             </div>
             <div id="filter-content"></div>
 
           </div>
-
-          <button class="content-button hashtag" id="button-hashtag"></i></button>
         </div>
         <div class="header-right">
           <button class="content-button-add" id="button-add">Add new post</button>
@@ -67,7 +61,6 @@
                 </div>
                 <div class="header-right">
                   <button class="post-button edit"></button>
-          <!--       <button class="post-button delete" onclick="deletePost(this.closest('article').id)"></button>--> 
           <button class="post-button delete"></button>
                 </div>
               </div>
@@ -80,34 +73,12 @@
 
                 <div class="main-content" data-target="description">
                   
-                </div>
+                </div>          
 
-             
-              
-
-                <div class="post-footer">
-                  <!-- <button class="post-button like" onclick="likePost(this.closest('article').id)"></button> -->
-                  <button class="post-button like"></button> 
-                  <span data-target="likes"></span>
-                  <!-- <button class="post-button dislike" onclick="dislikePost(this.closest('article').id)"></button> -->
-                  <button class="post-button dislike"></button>
-                </div>
-               
-              </div>
-         
-         
-
-
-
-            </article>
-           
+            </article>           
           </template>
-
-
       </div>
-  
  
-<!--
       <footer class="footer">
         <div style="margin-top: 2vh;">
 
@@ -125,7 +96,7 @@
           </div>
         </div>
       </footer>
-    -->
+
   </main>
 
 

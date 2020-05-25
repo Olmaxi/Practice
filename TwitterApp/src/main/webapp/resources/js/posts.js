@@ -1,3 +1,7 @@
+
+
+
+
 var posts = [
     {
         id: 1,
@@ -346,7 +350,7 @@ let validatedPostForAdding = {
 }
 
 let notValidatedPostForAdding = {
-    id: '5  1',
+    id: '51',
     description: 'съешь ещё этих мягких французских булок, да выпей чаю',
     createdAt: '',
     author: 'Mr.NoOne',
@@ -356,3 +360,14 @@ let notValidatedPostForAdding = {
     title: 'some title',
 }
 
+
+let postsString = JSON.stringify(posts);
+
+function fillPosts() {
+    localStorage.setItem("posts", postsString);
+    console.log(localStorage.getItem("posts"))
+}
+
+function emptyPosts() {
+    localStorage.setItem("posts","");    
+}

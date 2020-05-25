@@ -7,10 +7,21 @@ var currentUser =
 
 class PostsList {
 
+
+    _getPostsFromStorage() {
+        var posts = localStorage.getItem("posts");
+        this._posts = JSON.parse(posts);
+    }
+
+    _storePosts() {
+        var posts = JSON.stringify(this._posts);
+        localStorage.setItem("posts", posts);
+    }
+
     _posts = new Array();
 
     constructor(posts) {
-        this._posts = posts;
+        this._getPostsFromStorage();
         this._fillHashtagSet();
         this._fillAuthorSet();
     }
@@ -18,6 +29,7 @@ class PostsList {
     hashtagSet = new Set();
 
     _fillHashtagSet() {
+        this._getPostsFromStorage();
         this._posts.forEach(post => {
             post.hashtages?.forEach(hashtag => {
                 this.hashtagSet.add(hashtag);
@@ -28,6 +40,7 @@ class PostsList {
     authorSet = new Set();
 
     _fillAuthorSet() {
+        this._getPostsFromStorage();
         this._posts.forEach(post => {
             this.authorSet.add(post.author);
         });
@@ -36,7 +49,9 @@ class PostsList {
 
     static validateDate(date) {
 
-        date = date.toISOString();
+        if (typeof date != "string")
+            date = date.toISOString();
+
         let regularExp = /^(([1-2]\d{3}-[0]?[1-9]|1[0-2])-([0-2]?[0-9]|3[0-1])T(20|21|22|23|[0-1]?\d{1}):([0-5]?\d{1}):([0-5]?\d{1}).000Z)$/;
 
         if (date.match(regularExp) != null) {
@@ -44,7 +59,6 @@ class PostsList {
         }
         return false;
     }
-
 
     static validatePhotoLink(link) {
         let regularExp = /\/(?:.(?!\/))+([a-zA-Z0-9\s_\\.\-\(\):])+(.png|.gif|.bmp|.jpg)$/;
@@ -54,35 +68,28 @@ class PostsList {
         return false;
     }
 
-
-    static validatePost(post) {
-        console.log(post)
-        if (
-           // post.id &&
+    static validatePost(post) {  
+        if (      
             post.description &&
             post.title &&
             post.author &&
             post.createdAt &&
             post.photoLink) {
 
-            if (
-                //Number.isInteger(parseInt(post.id)) &&
+            if (   
                 post.description.length < 200 &&
                 post.title.length < 15 &&
                 post.author.length < 15 &&
-                PostsList.validateDate(post.createdAt) &&
                 PostsList.validatePhotoLink(post.photoLink)) {
                 return true;
             }
             return false;
         }
-        
-        else 
-        {
-            console.log(post)
+
+        else {         
             return false;
         }
-       
+
     }
 
     addAll(posts) {
@@ -104,23 +111,27 @@ class PostsList {
 
 
     get(id) {
+        this._getPostsFromStorage();
         return this._posts.find(post =>
             post.id == id);
     }
 
 
     likePost(id) {
+        this._getPostsFromStorage();
         const index = this._posts.findIndex(post => post.id == id);
         ++this._posts[index].likes;
     }
 
 
     dislikePost(id) {
+        this._getPostsFromStorage();
         const index = this._posts.findIndex(post => post.id == id);
         --this._posts[index].likes;
     }
 
     filterPage(filterConfig) {
+        this._getPostsFromStorage();
         let filteredPosts = [];
         switch (filterConfig.field) {
             case ('hashtag'):
@@ -144,7 +155,7 @@ class PostsList {
                 }
 
             case ('author'):
-                {
+                {               
                     this._posts.forEach(post => {
                         filterConfig.filterValue.forEach(value => {
                             if (post.author == value) {
@@ -201,10 +212,13 @@ class PostsList {
 
 
 
-    getPage(filterConfig, skip = 0, top = 10) {   
+    getPage(filterConfig, skip = 0, top = 10) {
+        this._getPostsFromStorage();
+
         let sortedPosts = [];
-        this._posts.sort((a, b) => a.createdAt - b.createdAt)
+        this._posts.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
         if (!filterConfig) {
+            
             return this._posts.slice(skip, skip + top);
         }
         else {
@@ -215,48 +229,37 @@ class PostsList {
 
 
     add(post) {
-
-  
-
+        this._getPostsFromStorage();
         if (!PostsList.validatePost(post)) {
             return false;
         }
-        
-       /* for (let i = 0; i < this._posts.length; i++) {
-            if (this._posts.find(item => item.id === post.id)) {
-                return false;
-            }
-        }*/
-       
-       
-        let idmax=0;
-        for(let i=0;i<this._posts.length;i++){
-            console.log(posts[i].id);
-            if(posts[i].id>idmax)
-            {
-                idmax=posts[i].id;          
+
+        let idmax = 0;
+        for (let i = 0; i < this._posts.length; i++) {       
+
+            if (this._posts[i].id > idmax) {
+
+                idmax = this._posts[i].id;
             }
         }
-
-       post.id =  ++idmax      
+        post.id = ++idmax
       
-
         post.hashtages?.forEach(hashtag => {
             this.hashtagSet.add(hashtag);
         });
 
         post.likes = 0;
 
-        this._posts.push(post);
-        this._posts.sort((a, b) => a.createdAt - b.createdAt);
-
+        this._posts.push(post);     
+        this._posts.sort((a, b) =>  Date.parse(b.createdAt) -  Date.parse(a.createdAt));
+        this._storePosts();
         return true;
     }
 
 
 
     edit(id, post) {
-        console.log()
+        this._getPostsFromStorage();
         let postForEdit = this.get(id);
 
         for (let key in post) {
@@ -266,7 +269,7 @@ class PostsList {
                 }
             }
         }
-        
+
         if (!PostsList.validatePost(postForEdit))
             return false;
         else {
@@ -275,16 +278,19 @@ class PostsList {
         }
 
         this._posts.sort((a, b) => a.createdAt - b.createdAt);
+        this._storePosts();
         return true;
     }
 
 
     remove(id) {
+        this._getPostsFromStorage();
         const index = this._posts.findIndex(post => post.id == id);
         if (index < 0) {
             return false;
         }
         this._posts.splice(index, 1);
+        this._storePosts();
         return true;
     }
 }
