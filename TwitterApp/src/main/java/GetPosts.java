@@ -19,7 +19,7 @@ public class GetPosts extends javax.servlet.http.HttpServlet
             Statement statement = connection.createStatement();
 
 
-            ResultSet rs = statement.executeQuery("SELECT * FROM POST WHERE");
+            ResultSet rs = statement.executeQuery("SELECT * FROM POST");
             String json = "[";
 
             while (rs.next()) {
