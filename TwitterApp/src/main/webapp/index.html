@@ -33,8 +33,8 @@
           <button onclick="showFilterBox()" class="content-button filter" id="button-filter"></i></button>
           <div id="myDropdown" class="dropdown-content">
             <div id="filter-option">
-              <button id="filter-option-button" onclick="showFilterOptions()">Author filter</button>
-              <button>Date filter</button>
+              <button class="filter-option-button" option="author">Author filter</button>
+              <button class="filter-option-button" option="hashtag">Hashtag filter</button>
             </div>
             <div id="filter-content"></div>
 
@@ -46,39 +46,43 @@
       </div>
 
       <div id="container">
-     
-          <template id="note-template">
-            <article class="post">
 
-              <div class="header">
-                <div class="header-left">
-                  <div class="date">
-                    <span style="text-align: center;" type="date" data-target="createdAt"></span>
-                  </div>
-                </div>
-                <div style="display: inline-block;">
-                  <h2 style="display: inline; margin-left: 20px;" data-target="title"></h2>
-                </div>
-                <div class="header-right">
-                  <button class="post-button edit"></button>
-          <button class="post-button delete"></button>
+        <template id="note-template">
+          <article class="post">
+
+            <div class="header">
+              <div class="header-left">
+                <div class="date">
+                  <span style="text-align: center;" type="date" data-target="createdAt"></span>
                 </div>
               </div>
+              <div style="display: inline-block;">
+                <h2 style="display: inline; margin-left: 20px;" data-target="title"></h2>
+              </div>
+              <div class="header-right">
+                <button class="post-button edit"></button>
+                <button class="post-button delete"></button>
+              </div>
+            </div>
 
-              <div class="post-main">
-                <div class="left-content">
-                  <img data-target="photoLink" alt="no avatar :(" class="avatar-post center">
-                  <p style="text-align: center;" data-target="author"></p>
-                </div>
+            <div class="post-main">
+              <div class="left-content">
+                <img data-target="photoLink" alt="no avatar :(" class="avatar-post center">
+                <p style="text-align: center;" data-target="author"></p>
+              </div>
 
-                <div class="main-content" data-target="description">
-                  
-                </div>          
+              <div class="main-content" data-target="description">
+              </div>
 
-            </article>           
-          </template>
+              <div class="post-footer">
+                <button class="post-button like"></button>
+                <button data-target="likes"></button>
+              </div>
+
+          </article>
+        </template>
       </div>
- 
+
       <footer class="footer">
         <div style="margin-top: 2vh;">
 
@@ -96,11 +100,7 @@
           </div>
         </div>
       </footer>
-
   </main>
-
-
-
 </body>
 
 <script src="./resources/js/view.js"></script>

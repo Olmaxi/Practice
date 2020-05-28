@@ -24,7 +24,7 @@ class View {
     }
 
     fillItemData(item, data) {
-        
+
 
         var postElement = item.querySelector(".post");
 
@@ -44,20 +44,24 @@ class View {
             let key = phElement.getAttribute('data-target');
 
             if (key == 'createdAt' && data[key] != 'No date') {
-
                 let formated_date;
                 if (typeof data[key] != "string")
                     formated_date = data[key].toISOString();
                 else formated_date = data[key];
                 formated_date = formated_date.replace("T", " ")
                 formated_date = formated_date.slice(0, -5);
-
                 phElement.textContent = String(formated_date);
             }
 
             else if (key == 'photoLink') {
                 phElement.src = data[key];
             }
+
+            else if (key == 'likes') {
+
+                phElement.textContent = data[key].length;
+            }
+
 
             else {
                 phElement.textContent = String(data[key]);
@@ -86,10 +90,10 @@ class View {
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    showFilterOptions(authors) {
+    showFilterOptions(option) {
         let filterOptions = document.getElementById("filter-content");
         filterOptions.innerHTML = "";
-        authors.forEach(author => {
+        option.forEach(author => {
             let button = document.createElement("button");
             button.classList.add("filterValue");
             button.innerHTML = author;
@@ -160,6 +164,7 @@ class View {
 
     createAdding() {
         let container = document.getElementById('container');
+
         var node = document.createElement("button");
         node.id = "morePosts"
         node.style.cssText = "margin:auto; display:block; margin-bottom: 10px"
@@ -183,28 +188,23 @@ class View {
 
         let mainContent = article.getElementsByClassName("main-content")[0]
         editTextArea.innerHTML = mainContent.innerHTML;
-
         let parent = mainContent.parentNode
 
         this.tempEdit = parent;
+
         parent.innerHTML = '';
-
-
-
         parent.appendChild(editTextArea)
 
         return editTextArea
     }
 
     createEditSaveButton(event) {
-        let article = event.target.closest('article');
 
         var saveEditButton = document.createElement("button");
         saveEditButton.id = "editPost"
         saveEditButton.style.cssText = "margin-left: 5px; margin-right: 30px; margin-bottom: 20px; float: right;"
         saveEditButton.innerHTML = "Save"
 
-   
         let mainContent = document.getElementById("editPostText")
 
         let parent = mainContent.parentNode
@@ -216,34 +216,33 @@ class View {
 
     createAddPostArea() {
         let container = document.getElementById('container');
-        let article = document.getElementsByClassName('post');    
-    
+
         var node = document.createElement("div");
         node.id = "addPost"
         node.style.cssText = "height: 320px; "
         container.insertBefore(node, container.childNodes[0]);
-    
+
         var titleTextArea = document.createElement("textarea");
         titleTextArea.id = "addPostTitle"
         titleTextArea.style.cssText = "height: 30px; margin: 10px 25px; width: 95%; resize: none;"
         titleTextArea.innerHTML = "title"
-    
+
         var postTextArea = document.createElement("textarea");
         postTextArea.id = "addPostText"
         postTextArea.style.cssText = "height: 200px; margin: 10px 25px 10px 25px;  width: 95%; resize: none;"
         postTextArea.innerHTML = "postcontent"
-    
+
         var saveButton = document.createElement("button");
         saveButton.id = "savePost"
         saveButton.style.cssText = "margin-left: 5px; margin-right: 30px; float: right"
         saveButton.innerHTML = "Save"
-    
+
         var cancelButton = document.createElement("button");
         cancelButton.id = "cancelSavePost"
         cancelButton.style.cssText = "margin-left: 10px; margin-right: 10px; float: right"
         cancelButton.innerHTML = "Cancel"
-    
-    
+
+
         node.appendChild(titleTextArea)
         node.appendChild(postTextArea)
         node.appendChild(saveButton)
@@ -258,7 +257,7 @@ class View {
         cancelEditButton.id = "cancelEditPost"
         cancelEditButton.style.cssText = "margin-left: 10px; margin-right: 10px; margin-bott    om: 20px; float: right"
         cancelEditButton.innerHTML = "Cancel"
-        //
+
         let mainContent = document.getElementById("editPostText")
         let parent = mainContent.parentNode
         parent.appendChild(cancelEditButton)
@@ -273,11 +272,10 @@ class View {
 
         let article = event.target.closest(".post")
 
-
         article.parentNode.replaceChild(postElement, article)
         let newarticle = event.target.closest(".post")
 
-        this.fillItemData(postElement, data)       
+        this.fillItemData(postElement, data)
     }
 }
 

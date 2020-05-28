@@ -1,7 +1,3 @@
-
-
-
-
 var posts = [
     {
         id: 1,
@@ -9,14 +5,14 @@ var posts = [
         dasdas;sa;articleListNode;lasldlasdl;asdsadlkaslkdaskldklask;dka;lskdl;askl;dkl;asldkalskdasldk;alskdlaksldk;a \
         dasdas;sa;articleListNode;lasldlasdl;asdsadlkaslkdaskldklask;dka;lskdl;askl;dkl;asldkalskdasldk;alskdlaksldk;a \
         dasdas;sa;articleListNode;lasldlasdl;asdsadlkaslkdaskldklask;dka;lskdl;askl;dkl;asldkalskdasldk;alskdlaksldk;a \
-        dasdas;sa;articleListNode;lasldlasdl;asdsadlkaslkdaskldklask;dka;lskdl;askl;dkl;asldkalskdasldk;alskdlaksldk;a',  
-        
+        dasdas;sa;articleListNode;lasldlasdl;asdsadlkaslkdaskldklask;dka;lskdl;askl;dkl;asldkalskdasldk;alskdlaksldk;a',
+
 
         createdAt: new Date('2020-03-23T10:00:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : ['#a', '#b'],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -26,8 +22,8 @@ var posts = [
         createdAt: new Date('2020-03-23T11:00:00'),
         author: 'Mr',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : ['#a', '#b'],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -36,9 +32,9 @@ var posts = [
         description: '3',
         createdAt: new Date('2020-03-23T11:20:00'),
         author: 'Mr.NoOne',
-        photoLink: './resources/graphic/MrNoOne.png',        
-        likes : 0,
-        hashtages : ['#a'],
+        photoLink: './resources/graphic/MrNoOne.png',
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -48,8 +44,8 @@ var posts = [
         createdAt: new Date('2020-03-23T15:50:00'),
         author: 'Mr.NoOne',
         photoLink: './resources//graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -59,8 +55,8 @@ var posts = [
         createdAt: new Date('2020-03-23T13:34:00'),
         author: 'M.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -70,8 +66,8 @@ var posts = [
         createdAt: new Date('2020-03-23T10:00:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : ['#a', '#b'],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -81,8 +77,8 @@ var posts = [
         createdAt: new Date('2020-03-23T11:00:00'),
         author: 'Mr',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : ['#a', '#b'],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -91,9 +87,9 @@ var posts = [
         description: '8',
         createdAt: new Date('2020-03-23T11:20:00'),
         author: 'Mr.NoOne',
-        photoLink: './resources/graphic/MrNoOne.png',        
-        likes : 0,
-        hashtages : ['#a'],
+        photoLink: './resources/graphic/MrNoOne.png',
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -103,8 +99,8 @@ var posts = [
         createdAt: new Date('2020-03-23T15:50:00'),
         author: 'Mr.NoOne',
         photoLink: './resources//graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -114,8 +110,8 @@ var posts = [
         createdAt: new Date('2020-03-23T13:34:00'),
         author: 'M.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -125,8 +121,8 @@ var posts = [
         createdAt: new Date('2020-03-23T10:00:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : ['#a', '#b'],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -136,8 +132,8 @@ var posts = [
         createdAt: new Date('2020-03-23T11:00:00'),
         author: 'Mr',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : ['#a', '#b'],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -146,9 +142,9 @@ var posts = [
         description: '13',
         createdAt: new Date('2020-03-23T11:20:00'),
         author: 'Mr.NoOne',
-        photoLink: './resources/graphic/MrNoOne.png',        
-        likes : 0,
-        hashtages : ['#a'],
+        photoLink: './resources/graphic/MrNoOne.png',
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -158,8 +154,8 @@ var posts = [
         createdAt: new Date('2020-03-23T15:50:00'),
         author: 'Mr.NoOne',
         photoLink: './resources//graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -169,8 +165,8 @@ var posts = [
         createdAt: new Date('2020-03-23T13:34:00'),
         author: 'M.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -180,8 +176,8 @@ var posts = [
         createdAt: new Date('2020-03-23T10:00:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : ['#a', '#b'],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -191,8 +187,8 @@ var posts = [
         createdAt: new Date('2020-03-23T11:00:00'),
         author: 'Mr',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : ['#a', '#b'],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -201,9 +197,9 @@ var posts = [
         description: '18',
         createdAt: new Date('2020-03-23T11:20:00'),
         author: 'Mr.NoOne',
-        photoLink: './resources/graphic/MrNoOne.png',        
-        likes : 0,
-        hashtages : ['#a'],
+        photoLink: './resources/graphic/MrNoOne.png',
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -213,8 +209,8 @@ var posts = [
         createdAt: new Date('2020-03-23T15:50:00'),
         author: 'Mr.NoOne',
         photoLink: './resources//graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -224,8 +220,8 @@ var posts = [
         createdAt: new Date('2020-03-23T13:34:00'),
         author: 'M.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 ];
@@ -238,8 +234,8 @@ var postsForAdding = [
         createdAt: new Date('2020-03-23T16:35:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -249,8 +245,8 @@ var postsForAdding = [
         createdAt: new Date('2020-03-23T17:20:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
 
     },
@@ -261,8 +257,8 @@ var postsForAdding = [
         createdAt: new Date('2020-03-23T14:10:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
 
     },
@@ -273,8 +269,8 @@ var postsForAdding = [
         createdAt: new Date('2020-03-23T13:10:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
 
     },
@@ -285,8 +281,8 @@ var postsForAdding = [
         createdAt: '',
         author: '',
         photoLink: '',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
     },
 
@@ -296,20 +292,20 @@ var postsForAdding = [
         createdAt: new Date('2020-03-23T13:10:00'),
         author: '',
         photoLink: '',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
-    },  
+    },
     {
         id: '27',
         description: 'I am not validated',
         createdAt: '',
         author: '',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
-    },  
+    },
 ];
 
 var sameID_Posts = [
@@ -319,8 +315,8 @@ var sameID_Posts = [
         createdAt: new Date('2020-03-23T10:00:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
 
     },
@@ -331,10 +327,10 @@ var sameID_Posts = [
         createdAt: new Date('2020-03-23T11:00:00'),
         author: 'Mr.NoOne',
         photoLink: './resources/graphic/MrNoOne.png',
-        likes : 0,
-        hashtages : [],
+        likes: [],
+        hashtages: [],
         title: 'some title',
-    },  
+    },
 ];
 
 
@@ -344,8 +340,8 @@ let validatedPostForAdding = {
     createdAt: new Date('2020-03-23T13:10:00'),
     author: 'Maxim',
     photoLink: './resources/graphic/MrNoOne.png',
-    likes : 0,
-    hashtages : ["#d"],
+    likes: [],
+    hashtages: [],
     title: 'some title',
 }
 
@@ -355,8 +351,8 @@ let notValidatedPostForAdding = {
     createdAt: '',
     author: 'Mr.NoOne',
     photoLink: '',
-    likes : 0,
-    hashtages : [],
+    likes: [],
+    hashtages: [],
     title: 'some title',
 }
 
@@ -369,5 +365,5 @@ function fillPosts() {
 }
 
 function emptyPosts() {
-    localStorage.setItem("posts","");    
+    localStorage.setItem("posts", "");
 }

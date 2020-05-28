@@ -116,7 +116,7 @@ justify-content: center;
 .left-content {
 
     float:left;
-    width:20%; /* The width is 20%, by default */
+    width:20%;
   }
 
   .footer-left-content {
@@ -140,7 +140,7 @@ justify-content: center;
 .main-content {
     margin-top: 10px;
     float:left;
-    width:80%; 
+    width:72%; 
     overflow-wrap: break-word;
   }
 

@@ -1,12 +1,4 @@
-var currentUser =
-{
-    name: 'Maxim',
-    avatar: "",
-}
-
-
 class PostsList {
-
 
     _getPostsFromStorage() {
         var posts = localStorage.getItem("posts");
@@ -20,7 +12,7 @@ class PostsList {
 
     _posts = new Array();
 
-    constructor(posts) {
+    constructor() {
         this._getPostsFromStorage();
         this._fillHashtagSet();
         this._fillAuthorSet();
@@ -60,6 +52,7 @@ class PostsList {
         return false;
     }
 
+
     static validatePhotoLink(link) {
         let regularExp = /\/(?:.(?!\/))+([a-zA-Z0-9\s_\\.\-\(\):])+(.png|.gif|.bmp|.jpg)$/;
         if (link.match(regularExp) != null) {
@@ -68,15 +61,16 @@ class PostsList {
         return false;
     }
 
-    static validatePost(post) {  
-        if (      
+
+    static validatePost(post) {
+        if (
             post.description &&
             post.title &&
             post.author &&
             post.createdAt &&
             post.photoLink) {
 
-            if (   
+            if (
                 post.description.length < 200 &&
                 post.title.length < 15 &&
                 post.author.length < 15 &&
@@ -86,7 +80,7 @@ class PostsList {
             return false;
         }
 
-        else {         
+        else {
             return false;
         }
 
@@ -116,18 +110,22 @@ class PostsList {
             post.id == id);
     }
 
-
     likePost(id) {
         this._getPostsFromStorage();
         const index = this._posts.findIndex(post => post.id == id);
-        ++this._posts[index].likes;
-    }
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        let likesIndex = this._posts[index].likes.findIndex(id => id == currentUser.id);
+
+        if (likesIndex != -1) {
+            this._posts[index].likes.splice(likesIndex, 1);
+        }
 
 
-    dislikePost(id) {
-        this._getPostsFromStorage();
-        const index = this._posts.findIndex(post => post.id == id);
-        --this._posts[index].likes;
+        else {
+            this._posts[index].likes.push(currentUser.id);
+            this._storePosts()
+        }
+        this._storePosts();
     }
 
     filterPage(filterConfig) {
@@ -155,7 +153,7 @@ class PostsList {
                 }
 
             case ('author'):
-                {               
+                {
                     this._posts.forEach(post => {
                         filterConfig.filterValue.forEach(value => {
                             if (post.author == value) {
@@ -202,9 +200,7 @@ class PostsList {
                             });
                             break;
                     }
-
                     break;
-
                 }
         }
         return filteredPosts;
@@ -214,11 +210,9 @@ class PostsList {
 
     getPage(filterConfig, skip = 0, top = 10) {
         this._getPostsFromStorage();
-
         let sortedPosts = [];
         this._posts.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
         if (!filterConfig) {
-            
             return this._posts.slice(skip, skip + top);
         }
         else {
@@ -235,23 +229,19 @@ class PostsList {
         }
 
         let idmax = 0;
-        for (let i = 0; i < this._posts.length; i++) {       
-
+        for (let i = 0; i < this._posts.length; i++) {
             if (this._posts[i].id > idmax) {
 
                 idmax = this._posts[i].id;
             }
         }
         post.id = ++idmax
-      
         post.hashtages?.forEach(hashtag => {
             this.hashtagSet.add(hashtag);
         });
 
-        post.likes = 0;
-
-        this._posts.push(post);     
-        this._posts.sort((a, b) =>  Date.parse(b.createdAt) -  Date.parse(a.createdAt));
+        this._posts.push(post);
+        this._posts.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
         this._storePosts();
         return true;
     }

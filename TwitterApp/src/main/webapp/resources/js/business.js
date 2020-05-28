@@ -1,18 +1,32 @@
-document.getElementById("currentUser").innerHTML = localStorage.getItem("currentUser")
-
-
+document.getElementById("currentUser").innerHTML = JSON.parse(localStorage.getItem("currentUser")).login
 
 localStorage.setItem('currentFilter', null);
+localStorage.setItem('filterField', null);
+localStorage.setItem('postsCount', 10);
 
+let postsList = new PostsList();
+let view = new View();
+
+/*  DOCUMENT CLICKS*/
 document.addEventListener('click', handleDocumentClick);
+
+function handleDocumentClick() {
+    let dropDown = document.getElementById("myDropdown")
+
+    if (dropDown.className == "dropdown-content show" && event.target.id != "button-filter" && event.target.className != "filter-option-button") {
+        dropDown.className = "dropdown-content"
+    }
+    if (event.target.id == "morePosts") {
+        handleAddMorePosts();
+    }
+}
 
 let logoutButton = document.getElementById("logout-button");
 logoutButton.addEventListener('click', () => {
     localStorage.removeItem("currentUser");
     location.href = 'login.html';
-    localStorage.setItem('postsCount',10);
+    localStorage.setItem('postsCount', 10);
 })
-
 
 function storeCurrentFilter(filter) {
     var jsonFilter = JSON.stringify(filter);
@@ -20,49 +34,23 @@ function storeCurrentFilter(filter) {
 }
 
 function getStoredFilterObject() {
-    let filter = JSON.parse(localStorage.getItem('currentFilter')) 
+    let filter = JSON.parse(localStorage.getItem('currentFilter'))
     return filter;
 }
 
-
-function handleDocumentClick() {
-    let dropDown = document.getElementById("myDropdown") 
-    if (dropDown.className == "dropdown-content show" && event.target.id != "button-filter" && event.target.id != "filter-option-button") {
-        dropDown.className = "dropdown-content"
-    }
-    if(event.target.id == "morePosts")
-    {        
-        handleAddMorePosts();
-    }
-
-
-
-}
-
-let postsList = new PostsList();
-
-let view = new View();
-
 function addPost(post) {
-
-    if (postsList.add(post))
-    {    
+    if (postsList.add(post)) {
         getPage();
-    }
-}
-
-function editPost(id, post) {
-    if (postsList.edit(id, post)) {
-        let element = document.getElementById(id);
-        view.fillItemData(element, post);
     }
 }
 
 function likePost(id) {
     postsList.likePost(id)
-    let element = document.getElementById(id);
-    let post = postsList.get(id);
-    view.fillItemData(element, post);
+    {
+        let element = document.getElementById(id);
+        let post = postsList.get(id);
+        view.fillItemData(element, post);
+    }
 }
 
 function dislikePost(id) {
@@ -79,25 +67,11 @@ function deletePost(id) {
     }
 }
 
-/*function getPage(filterConfig, skip = 0, top = 10) {
-    clearPage();
-
-
-    let posts = postsList.getPage(filterConfig, skip, top);
-
-    posts.forEach((post) => {
-        view.addElement(post);
-    }
-    );
-    view.createAdding();
-}*/
-
 function getPage() {
- 
+
     clearPage();
     let posts = [];
-    posts = postsList.getPage(getStoredFilterObject(), 0 , parseInt(localStorage.getItem('postsCount')));
-
+    posts = postsList.getPage(getStoredFilterObject(), 0, parseInt(localStorage.getItem('postsCount')));
     posts.forEach((post) => {
         view.addElement(post);
     }
@@ -115,30 +89,44 @@ function clearPage() {
     view.clearPage();
 }
 
-
 function showFilterBox() {
     view.showFilterBox();
+
+    let filterButtons = document.getElementById("filter-option")
+    filterButtons.addEventListener('click', showFilterOptions)
 }
 
-
 function showFilterOptions() {
-    view.showFilterOptions(postsList.authorSet);
+    switch (event.target.getAttribute("option")) {
+
+        case "author":
+            localStorage.setItem('filterField', "author");
+            view.showFilterOptions(postsList.authorSet);
+            break;
+
+        case "date":
+            break;
+
+        case "hashtag":
+            localStorage.setItem('filterField', "hashtag");
+            view.showFilterOptions(postsList.hashtagSet);
+            break;
+    }
 }
 
 function getMorePosts() {
-
 }
 
 getPage();
+
 
 let morePosts = document.getElementById('morePosts');
 morePosts.addEventListener('click', handleAddMorePosts)
 
 function handleAddMorePosts() {
-
-    var count = document.querySelectorAll('article').length;
+    let count = localStorage.getItem("postsCount")
     localStorage.setItem("postsCount", count + 10);
-    view.deleteAdding();   
+    view.deleteAdding();
     getPage();
 }
 
@@ -146,13 +134,12 @@ let myDropdown = document.getElementById('myDropdown');
 myDropdown.addEventListener('click', handleAuthorFilterClick);
 
 function handleAuthorFilterClick(event) {
-   
     if (event.target.className == "filterValue") {
 
         let filter = {
-            field: "author",
+            field: localStorage.getItem('filterField'),
             filterValue: [event.target.innerHTML]
-        }  
+        }
 
         storeCurrentFilter(filter)
         getPage()
@@ -160,13 +147,41 @@ function handleAuthorFilterClick(event) {
     }
 }
 
+/* POST BUTTONS */
 var articleContainer = document.querySelector('#container');
 
 articleContainer.addEventListener('click', handleDeleteBtnClick);
-articleContainer.addEventListener('click', handleLikeBtnClick);
-articleContainer.addEventListener('click', handleDislikeBtnClick);
 
-///EDIT
+/* DELETE */
+function handleDeleteBtnClick(event) {
+    if (event.target.className != 'post-button delete')
+        return;
+    let id = event.target.closest('article').id
+    deletePost(id);
+}
+
+articleContainer.addEventListener('click', handleLikeBtnClick);
+
+function handleLikeBtnClick(event) {
+    if (event.target.className != 'post-button like')
+        return;
+    let id = event.target.closest('article').id
+    likePost(id);
+}
+
+function findHashTags(text) {
+    let result = text.match(/(?<=[\s>]|^)#(\w*[A-Za-z_]+\w*)/g);
+    return result;
+}
+
+function addHashTagsToPost(post, hashtags) {
+    let postHashtagSet = new Set(post.hashtages);
+    hashtags.forEach(hashtag => postHashtagSet.add(hashtag))
+    return Array.from(postHashtagSet);
+}
+
+
+/* EDIT */
 articleContainer.addEventListener('click', handleEditBtnClick);
 
 function handleEditBtnClick(event) {
@@ -177,82 +192,70 @@ function handleEditBtnClick(event) {
     let saveEditButton = view.createEditSaveButton(event);
     let cancelEditButton = view.createEditCancelButton(event);
 
+    let article = event.target.closest('.post');
+    let id = article.id;
 
 
-    saveEditButton.addEventListener('click', handleEditSaveBtnClick);
     cancelEditButton.addEventListener('click', handleEditCancelBtnClick);
 
-
     function handleEditCancelBtnClick() {
-        let article = event.target.closest('.post');
-        let id = article.id;
         let post = postsList.get(id)
-
         view.createPostContent(post)
     }
 
+    saveEditButton.addEventListener('click', handleEditSaveBtnClick);
 
     function handleEditSaveBtnClick() {
-        let article = event.target.closest('.post');
-        let id = article.id;
 
-        let text = document.getElementById("editPostText")
         let postForEdit = postsList.get(id);
 
-        postForEdit.description = text.value;
+        let foundHashTags = findHashTags(editTextArea.value);
 
-        if (postsList.edit(id, postForEdit))
+        if (foundHashTags)
+            postForEdit.hashtages = addHashTagsToPost(postForEdit, foundHashTags)
+        else
+            postForEdit.hashtages = []
+
+        postForEdit.description = editTextArea.value;
+
+        if (postsList.edit(id, postForEdit)) {
             view.createPostContent(postForEdit)
+        }
+
     }
 }
 
-function handleDeleteBtnClick(event) {
-    if (event.target.className != 'post-button delete')
-        return;
-    let id = event.target.closest('article').id
-    deletePost(id);
-}
-
-function handleLikeBtnClick(event) {
-    if (event.target.className != 'post-button like')
-        return;
-    let id = event.target.closest('article').id
-    likePost(id);
-}
-
-function handleDislikeBtnClick(event) {
-    if (event.target.className != 'post-button dislike')
-        return;
-    let id = event.target.closest('article').id
-    dislikePost(id);
-}
-
-
+/* ADD */
 var articleAdd = document.querySelector('#button-add');
 articleAdd.addEventListener('click', handleAddPostClick);
+
 function handleAddPostClick() {
 
     view.deleteAdding();
-    let addPostArea = view.createAddPostArea();  
+    let addPostArea = view.createAddPostArea();
 
     var saveBut = document.querySelector('#savePost');
-
     saveBut.addEventListener('click', handleSaveBtnClick);
 
     let titleTextArea = document.getElementById('addPostTitle');
     let postTextArea = document.getElementById('addPostText');
 
     function handleSaveBtnClick() {
-
         let post = {
             description: postTextArea.value,
             createdAt: new Date(),
-            author: localStorage.getItem("currentUser"),
+            author: JSON.parse(localStorage.getItem("currentUser")).login,
             photoLink: './resources/graphic/MrNoOne.png',
-            likes: 0,
+            likes: [],
             hashtages: [],
             title: titleTextArea.value,
         }
+
+        let foundHashTags = findHashTags(postTextArea.value);
+
+        if (foundHashTags)
+            post.hashtages = foundHashTags;
+
         addPost(post)
         addPostArea.parentNode.removeChild(addPostArea);
     }
