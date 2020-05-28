@@ -25,7 +25,7 @@ let logoutButton = document.getElementById("logout-button");
 logoutButton.addEventListener('click', () => {
     localStorage.removeItem("currentUser");
     location.href = 'login.html';
-    localStorage.setItem('postsCount', 10);
+    localStorage.setItem('postsCount', 10);    
 })
 
 function storeCurrentFilter(filter) {

@@ -19,13 +19,10 @@ function loginFunction() {
         localStorage.setItem('postsCount', 10);
         let userString = JSON.stringify(currentUser);
         localStorage.setItem("currentUser", userString)
-
         currentUser = undefined;
         alert(`Welcome ${login.value}`)
     }
 
     else alert("Inccorect username or password")
-
-
 }
 

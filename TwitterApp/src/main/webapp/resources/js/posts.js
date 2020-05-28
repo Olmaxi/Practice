@@ -360,10 +360,14 @@ let notValidatedPostForAdding = {
 let postsString = JSON.stringify(posts);
 
 function fillPosts() {
-    localStorage.setItem("posts", postsString);
     console.log(localStorage.getItem("posts"))
+    if(!localStorage.getItem("posts")) {
+        localStorage.setItem("posts", postsString);  
+    }    
 }
 
 function emptyPosts() {
     localStorage.setItem("posts", "");
 }
+
+fillPosts()
