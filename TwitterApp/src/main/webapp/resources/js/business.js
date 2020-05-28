@@ -1,18 +1,41 @@
-document.getElementById("currentUser").innerHTML = localStorage.getItem("currentUser")
+let userString = localStorage.getItem("currentUser")
+console.log(userString)
+let user = JSON.parse((userString))
 
-
-
+document.getElementById("currentUser").innerHTML = user.login
 localStorage.setItem('currentFilter', null);
 
+let service = new HttpService();
+
+
+
+let postsList = new PostsList();
+let view = new View();
+
+/*  DOCUMENT CLICKS*/
 document.addEventListener('click', handleDocumentClick);
+
+function handleDocumentClick() {
+    let dropDown = document.getElementById("myDropdown")
+    console.log(event.target)
+    if (dropDown.className == "dropdown-content show" && event.target.id != "button-filter" && event.target.id != "filter-option-button") {
+        dropDown.className = "dropdown-content"
+    }
+    if (event.target.id == "morePosts") {
+        handleAddMorePosts();
+    }
+    if (event.target.id == "button-add") {
+        handleAddPostClick();
+    }
+
+}
 
 let logoutButton = document.getElementById("logout-button");
 logoutButton.addEventListener('click', () => {
     localStorage.removeItem("currentUser");
-    location.href = 'login.html';
-    localStorage.setItem('postsCount',10);
+    location.href = 'index.html';
+    localStorage.setItem('postsCount', 10);
 })
-
 
 function storeCurrentFilter(filter) {
     var jsonFilter = JSON.stringify(filter);
@@ -20,41 +43,19 @@ function storeCurrentFilter(filter) {
 }
 
 function getStoredFilterObject() {
-    let filter = JSON.parse(localStorage.getItem('currentFilter')) 
+    let filter = JSON.parse(localStorage.getItem('currentFilter'))
     return filter;
 }
 
-
-function handleDocumentClick() {
-    let dropDown = document.getElementById("myDropdown") 
-    if (dropDown.className == "dropdown-content show" && event.target.id != "button-filter" && event.target.id != "filter-option-button") {
-        dropDown.className = "dropdown-content"
-    }
-    if(event.target.id == "morePosts")
-    {        
-        handleAddMorePosts();
-    }
-
-
-
-}
-
-let postsList = new PostsList();
-
-let view = new View();
-
-function addPost(post) {
-
-    if (postsList.add(post))
-    {    
-        getPage();
+ async function addPost(post) {
+    if (await postsList.add(post)) {
+      getPage();
     }
 }
 
-function editPost(id, post) {
-    if (postsList.edit(id, post)) {
-        let element = document.getElementById(id);
-        view.fillItemData(element, post);
+async function editPost(id, post) {
+    if (await postsList.edit(id, post)) {
+     getPage(); 
     }
 }
 
@@ -73,31 +74,19 @@ function dislikePost(id) {
 }
 
 
-function deletePost(id) {
-    if (postsList.remove(id)) {
+async function deletePost(id) {
+    if (await postsList.remove(id)) {
         view.deleteElement(id);
     }
 }
 
-/*function getPage(filterConfig, skip = 0, top = 10) {
-    clearPage();
+async function getPage() {
 
-
-    let posts = postsList.getPage(filterConfig, skip, top);
-
-    posts.forEach((post) => {
-        view.addElement(post);
-    }
-    );
-    view.createAdding();
-}*/
-
-function getPage() {
- 
     clearPage();
     let posts = [];
-    posts = postsList.getPage(getStoredFilterObject(), 0 , parseInt(localStorage.getItem('postsCount')));
+    posts = await postsList.getPage(getStoredFilterObject(), 0, parseInt(localStorage.getItem('postsCount')));
 
+    console.log(posts)
     posts.forEach((post) => {
         view.addElement(post);
     }
@@ -115,11 +104,9 @@ function clearPage() {
     view.clearPage();
 }
 
-
 function showFilterBox() {
     view.showFilterBox();
 }
-
 
 function showFilterOptions() {
     view.showFilterOptions(postsList.authorSet);
@@ -131,14 +118,16 @@ function getMorePosts() {
 
 getPage();
 
+
 let morePosts = document.getElementById('morePosts');
-morePosts.addEventListener('click', handleAddMorePosts)
+//morePosts.addEventListener('click', handleAddMorePosts)
 
 function handleAddMorePosts() {
-
     var count = document.querySelectorAll('article').length;
+    // let count = localStorage.getItem("postsCount")
+    console.log(count)
     localStorage.setItem("postsCount", count + 10);
-    view.deleteAdding();   
+    view.deleteAdding();
     getPage();
 }
 
@@ -146,13 +135,12 @@ let myDropdown = document.getElementById('myDropdown');
 myDropdown.addEventListener('click', handleAuthorFilterClick);
 
 function handleAuthorFilterClick(event) {
-   
     if (event.target.className == "filterValue") {
 
         let filter = {
             field: "author",
             filterValue: [event.target.innerHTML]
-        }  
+        }
 
         storeCurrentFilter(filter)
         getPage()
@@ -160,13 +148,38 @@ function handleAuthorFilterClick(event) {
     }
 }
 
+/* POST BUTTONS */
 var articleContainer = document.querySelector('#container');
 
 articleContainer.addEventListener('click', handleDeleteBtnClick);
+
+/* DELETE */
+function handleDeleteBtnClick(event) {
+    if (event.target.className != 'post-button delete')
+        return;
+    let id = event.target.closest('article').id
+    deletePost(id);
+}
+
 articleContainer.addEventListener('click', handleLikeBtnClick);
+
+function handleLikeBtnClick(event) {
+    if (event.target.className != 'post-button like')
+        return;
+    let id = event.target.closest('article').id
+    likePost(id);
+}
+
 articleContainer.addEventListener('click', handleDislikeBtnClick);
 
-///EDIT
+function handleDislikeBtnClick(event) {
+    if (event.target.className != 'post-button dislike')
+        return;
+    let id = event.target.closest('article').id
+    dislikePost(id);
+}
+
+/* EDIT */
 articleContainer.addEventListener('click', handleEditBtnClick);
 
 function handleEditBtnClick(event) {
@@ -176,78 +189,55 @@ function handleEditBtnClick(event) {
     let editTextArea = view.createEditTextArea(event);
     let saveEditButton = view.createEditSaveButton(event);
     let cancelEditButton = view.createEditCancelButton(event);
+    
+    let article = event.target.closest('.post');
+    let id = article.id;   
 
 
-
-    saveEditButton.addEventListener('click', handleEditSaveBtnClick);
     cancelEditButton.addEventListener('click', handleEditCancelBtnClick);
 
-
     function handleEditCancelBtnClick() {
-        let article = event.target.closest('.post');
-        let id = article.id;
         let post = postsList.get(id)
-
         view.createPostContent(post)
     }
 
+    saveEditButton.addEventListener('click', handleEditSaveBtnClick);
 
     function handleEditSaveBtnClick() {
-        let article = event.target.closest('.post');
-        let id = article.id;
 
-        let text = document.getElementById("editPostText")
         let postForEdit = postsList.get(id);
-
-        postForEdit.description = text.value;
+        postForEdit.description = editTextArea.value;
 
         if (postsList.edit(id, postForEdit))
             view.createPostContent(postForEdit)
     }
 }
 
-function handleDeleteBtnClick(event) {
-    if (event.target.className != 'post-button delete')
-        return;
-    let id = event.target.closest('article').id
-    deletePost(id);
-}
-
-function handleLikeBtnClick(event) {
-    if (event.target.className != 'post-button like')
-        return;
-    let id = event.target.closest('article').id
-    likePost(id);
-}
-
-function handleDislikeBtnClick(event) {
-    if (event.target.className != 'post-button dislike')
-        return;
-    let id = event.target.closest('article').id
-    dislikePost(id);
-}
-
+/* ADD */
 
 var articleAdd = document.querySelector('#button-add');
 articleAdd.addEventListener('click', handleAddPostClick);
+
 function handleAddPostClick() {
 
     view.deleteAdding();
-    let addPostArea = view.createAddPostArea();  
+    let addPostArea = view.createAddPostArea();
 
     var saveBut = document.querySelector('#savePost');
-
+    console.log(saveBut)
     saveBut.addEventListener('click', handleSaveBtnClick);
 
     let titleTextArea = document.getElementById('addPostTitle');
     let postTextArea = document.getElementById('addPostText');
 
-    function handleSaveBtnClick() {
+    let userString = localStorage.getItem("currentUser");
+    let user = JSON.parse(userString);
 
+    function handleSaveBtnClick() {
         let post = {
             description: postTextArea.value,
             createdAt: new Date(),
-            author: localStorage.getItem("currentUser"),
+            authorId: user.id,
             photoLink: './resources/graphic/MrNoOne.png',
             likes: 0,
             hashtages: [],

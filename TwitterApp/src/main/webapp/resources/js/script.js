@@ -1,10 +1,3 @@
-var currentUser =
-{
-    name: 'Maxim',
-    avatar: "",
-}
-
-
 class PostsList {
 
 
@@ -13,24 +6,27 @@ class PostsList {
         this._posts = JSON.parse(posts);
     }
 
-    _storePosts() {
-        var posts = JSON.stringify(this._posts);
-        localStorage.setItem("posts", posts);
+    async _updateStorage(amount) {
+        let posts = await service.getPosts(amount);
+        let postsString = JSON.stringify(posts);         
+        localStorage.setItem("posts", postsString);
     }
 
     _posts = new Array();
 
-    constructor(posts) {
-        this._getPostsFromStorage();
-        this._fillHashtagSet();
-        this._fillAuthorSet();
+  constructor(posts) {
+      this._updateStorage();
+      this._posts = posts;
+      this._getPostsFromStorage();
+      this._fillHashtagSet();
+      this._fillAuthorSet();
     }
 
     hashtagSet = new Set();
 
     _fillHashtagSet() {
         this._getPostsFromStorage();
-        this._posts.forEach(post => {
+        this._posts.forEach(post => {       
             post.hashtages?.forEach(hashtag => {
                 this.hashtagSet.add(hashtag);
             });
@@ -68,25 +64,23 @@ class PostsList {
         return false;
     }
 
-    static validatePost(post) {  
-        if (      
-            post.description &&
-            post.title &&
-            post.author &&
-            post.createdAt &&
-            post.photoLink) {
 
-            if (   
-                post.description.length < 200 &&
-                post.title.length < 15 &&
-                post.author.length < 15 &&
-                PostsList.validatePhotoLink(post.photoLink)) {
+    static validatePost(post) {
+        console.log(post)
+        if (
+            post.description &&
+            post.authorId &&
+            post.createdAt) {
+
+            if (
+                post.description.length < 200
+            ) {
                 return true;
             }
             return false;
         }
 
-        else {         
+        else {
             return false;
         }
 
@@ -155,7 +149,7 @@ class PostsList {
                 }
 
             case ('author'):
-                {               
+                {             
                     this._posts.forEach(post => {
                         filterConfig.filterValue.forEach(value => {
                             if (post.author == value) {
@@ -202,23 +196,19 @@ class PostsList {
                             });
                             break;
                     }
-
                     break;
-
                 }
         }
         return filteredPosts;
     }
 
-
-
-    getPage(filterConfig, skip = 0, top = 10) {
+  async getPage(filterConfig, skip = 0, top = 10) {
+        await this._updateStorage(top);
         this._getPostsFromStorage();
 
         let sortedPosts = [];
         this._posts.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
         if (!filterConfig) {
-            
             return this._posts.slice(skip, skip + top);
         }
         else {
@@ -228,37 +218,35 @@ class PostsList {
     }
 
 
-    add(post) {
+async add(post) {
+        console.log(post)
+        console.log(post)
         this._getPostsFromStorage();
-        if (!PostsList.validatePost(post)) {
+        if (!PostsList.validatePost(post)) { 
             return false;
         }
 
         let idmax = 0;
-        for (let i = 0; i < this._posts.length; i++) {       
-
+        for (let i = 0; i < this._posts.length; i++) {
             if (this._posts[i].id > idmax) {
 
                 idmax = this._posts[i].id;
             }
         }
         post.id = ++idmax
-      
         post.hashtages?.forEach(hashtag => {
             this.hashtagSet.add(hashtag);
         });
 
         post.likes = 0;
+        await service.addPost(post)
 
-        this._posts.push(post);     
-        this._posts.sort((a, b) =>  Date.parse(b.createdAt) -  Date.parse(a.createdAt));
-        this._storePosts();
         return true;
     }
 
 
 
-    edit(id, post) {
+    async edit(id, post) {
         this._getPostsFromStorage();
         let postForEdit = this.get(id);
 
@@ -273,24 +261,20 @@ class PostsList {
         if (!PostsList.validatePost(postForEdit))
             return false;
         else {
-            const index = this._posts.findIndex(post => post.id == id);
-            posts.splice(index, 1, postForEdit);
+           await service.editPost(id,post)
         }
-
-        this._posts.sort((a, b) => a.createdAt - b.createdAt);
-        this._storePosts();
+        this._posts.sort((a, b) => a.createdAt - b.createdAt);     
         return true;
     }
 
 
-    remove(id) {
+    async remove(id) {
         this._getPostsFromStorage();
         const index = this._posts.findIndex(post => post.id == id);
         if (index < 0) {
             return false;
         }
-        this._posts.splice(index, 1);
-        this._storePosts();
+        await service.deletePost(id)
         return true;
     }
 }

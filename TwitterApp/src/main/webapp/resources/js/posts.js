@@ -2,7 +2,7 @@
 
 
 
-var posts = [
+/*var posts = [
     {
         id: 1,
         description: 'daskl;daksldkasl;fjksadgjlskgajksdg;ljskdgjsajgkjs;kkgjksdjgksdjklgjksdjglksdjkgsjdkgjsdlkgsgsgs \
@@ -358,15 +358,7 @@ let notValidatedPostForAdding = {
     likes : 0,
     hashtages : [],
     title: 'some title',
-}
-
-
-let postsString = JSON.stringify(posts);
-
-function fillPosts() {
-    localStorage.setItem("posts", postsString);
-    console.log(localStorage.getItem("posts"))
-}
+}*/
 
 function emptyPosts() {
     localStorage.setItem("posts","");    

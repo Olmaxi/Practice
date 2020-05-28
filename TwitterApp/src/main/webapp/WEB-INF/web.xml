@@ -4,9 +4,20 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <listener>
-        <listener-class>ListenToMeFirst</listener-class>
-    </listener>
+  <listener>
+    <listener-class>ListenToMeFirst</listener-class>
+  </listener>
+
+    <servlet>
+        <servlet-name>AddPost</servlet-name>
+        <servlet-class>AddPost</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddPost</servlet-name>
+        <url-pattern>/addpost</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>PostRequests</servlet-name>
@@ -15,8 +26,20 @@
 
     <servlet-mapping>
         <servlet-name>PostRequests</servlet-name>
-        <url-pattern>/posts</url-pattern>
+        <url-pattern>/post</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>InputJson</servlet-name>
+        <servlet-class>InputJson</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InputJson</servlet-name>
+        <url-pattern>/inputjson</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>GetPosts</servlet-name>
@@ -29,22 +52,22 @@
     </servlet-mapping>
 
 
-    <servlet>
-        <servlet-name>Tweets</servlet-name>
-        <servlet-class>Tweets</servlet-class>
-    </servlet>
+  <servlet>
+    <servlet-name>Tweets</servlet-name>
+    <servlet-class>Tweets</servlet-class>
+  </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Tweets</servlet-name>
-        <url-pattern>/tweets</url-pattern>
-    </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>Tweets</servlet-name>
+      <url-pattern>/tweets</url-pattern>
+  </servlet-mapping>
 
 
 
-    <servlet>
-        <servlet-name>Search</servlet-name>
-        <servlet-class>Search</servlet-class>
-    </servlet>
+  <servlet>
+    <servlet-name>Search</servlet-name>
+    <servlet-class>Search</servlet-class>
+  </servlet>
 
     <servlet-mapping>
         <servlet-name>Search</servlet-name>

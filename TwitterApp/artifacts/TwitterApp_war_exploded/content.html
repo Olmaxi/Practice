@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>In developing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./resources/css/styles.css" rel="stylesheet" type="text/css">
+  <script src="./resources/js/posts.js"></script>
+  <script src="./resources/js/httpService.js"></script>
+  <script src="./resources/js/script.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <a href="#" class="home"></a>
+      <div class="header-right">
+        <button id="logout-button" onclick="logout()">
+          Logout
+        </button>
+        <button id="user-button">
+          <span id="currentUser">Name</span>
+          <img src="./resources/graphic/MrNoOne.png" alt="Avatar" class="avatar">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="content">
+      <div class="header">
+        <div class="header-left">
+          <button onclick="showFilterBox()" class="content-button filter" id="button-filter"></i></button>
+          <div id="myDropdown" class="dropdown-content">
+            <div id="filter-option">
+              <button id="filter-option-button" onclick="showFilterOptions()">Author filter</button>
+              <button>Date filter</button>
+            </div>
+            <div id="filter-content"></div>
+
+          </div>
+
+          <button class="content-button hashtag" id="button-hashtag"></i></button>
+        </div>
+        <div class="header-right">
+          <button class="content-button-add" id="button-add">Add new post</button>
+        </div>
+      </div>
+
+      <div id="container">
+
+        <template id="note-template">
+          <article class="post">
+
+            <div class="header">
+              <div class="header-left">
+                <div class="date">
+                  <span style="text-align: center;" type="date" data-target="createdAt"></span>
+                </div>
+              </div>
+              <div style="display: inline-block;">
+                <h2 style="display: inline; margin-left: 20px;" data-target="title"></h2>
+              </div>
+              <div class="header-right">
+                <button class="post-button edit"></button>
+                <button class="post-button delete"></button>
+              </div>
+            </div>
+
+            <div class="post-main">
+              <div class="left-content">
+                <img data-target="photoLink" alt="no avatar :(" class="avatar-post center">
+                <p style="text-align: center;" data-target="author"></p>
+              </div>
+
+              <div class="main-content" data-target="description">
+
+              </div>
+
+
+
+
+              <div class="post-footer">
+                <button class="post-button like"></button>
+                <span data-target="likes"></span>
+                <button class="post-button dislike"></button>
+              </div>
+
+            </div>
+
+
+
+
+
+          </article>
+
+        </template>
+
+
+      </div>
+
+
+      <!--
+      <footer class="footer">
+        <div style="margin-top: 2vh;">
+
+
+          <div class="footer-left-content">
+            <span style="float: left; margin-left: 50px;" class="about">Contacts</span>
+          </div>
+          <div class="footer-main-content">
+            <span id="pageYear" class="aboutCenter">2020</span>
+            <br>
+            <span class="aboutCenter">by Maxim Olifiruk</span>
+          </div>
+          <div class="footer-right-content">
+            <span style="float: right; margin-right: 50px;" class="about">About website</span>
+          </div>
+        </div>
+      </footer>
+    -->
+  </main>
+
+
+
+</body>
+
+<script src="./resources/js/view.js"></script>
+<script src="./resources/js/business.js"></script>
+
+
+</html>

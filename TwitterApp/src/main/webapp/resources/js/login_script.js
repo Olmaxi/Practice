@@ -1,4 +1,3 @@
-//document.getElementById("form_login").addEventListener("click", loginFunction);
 document.getElementById("form_login").addEventListener("submit", loginFunction);
 let login = document.getElementById("login");
 let password = document.getElementById("password");
@@ -7,23 +6,19 @@ let password = document.getElementById("password");
 function redirect() {
 
     if(localStorage.getItem("currentUser"))
-    location.href = 'index.html'
+    location.href = 'content.html'
 }
-
 
 redirect();
 
 function loginFunction() {
-
-    if(
-        users.find(user => 
-            login.value == user.login)   &&
-        users.find(user => 
-            password.value == user.password)   
-      ) 
+    let user = users.find(user =>
+        login.value == user.login && password.value == user.password)
+    if(user)
       {
+       let userString = JSON.stringify(user);
        localStorage.setItem('postsCount', 10);
-       localStorage.setItem("currentUser", login.value)
+       localStorage.setItem("currentUser", userString)
         alert(`Welcome ${login.value}`)
       }
       else alert("Inccorect username or password")
